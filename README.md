@@ -16,7 +16,7 @@
 - X-Frame QuadCopter is used
 - [15:47:15] Drone starts ascent
 - [15:47:55] Goes up to altitude of 100meters
-- [15:48:00] Fault introduced in motor 1 (from code)
+- [15:48:00] Fault introduced in motor 2 (from code)
 - Immediately starts descent
 - [15:48:15] Crash lands in 15-16 seconds
 
