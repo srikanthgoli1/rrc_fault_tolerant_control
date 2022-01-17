@@ -1,1 +1,10 @@
 # motor_fault_sim_dataset
+
+| Vehicle Type | Frame | Frame Type | Filename
+| ----------- | ----------- | ----------- | ----------- |
+| Quadcopter | ![](images/quadplus.png) | Plus | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M3 & M4](dist/)
+| Quadcopter | ![](images/quadx.png) | X | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M3 & M4](dist/)
+| Quadcopter | ![](images/quady.png) | V | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M3 & M4](dist/)
+| Quadcopter | ![](images/quadh.png) | H | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M3 & M4](dist/)
+| Hexacopter | ![](images/hexaplus.png) | Plus | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M5](dist/)<br>[M6](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M1 & M5](dist/)<br>[M1 & M6](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M2 & M5](dist/)<br>[M2 & M6](dist/)<br>[M3 & M4](dist/)<br>[M3 & M5](dist/)<br>[M3 & M6](dist/)<br>[M4 & M5](dist/)<br>[M4 & M6](dist/)<br>[M5 & M6](dist/)
+| Hexacopter | ![](images/hexax.png) | X | [M1](dist/)<br>[M2](dist/)<br>[M3](dist/)<br>[M4](dist/)<br>[M5](dist/)<br>[M6](dist/)<br>[M1 & M2](dist/)<br>[M1 & M3](dist/)<br>[M1 & M4](dist/)<br>[M1 & M5](dist/)<br>[M1 & M6](dist/)<br>[M2 & M3](dist/)<br>[M2 & M4](dist/)<br>[M2 & M5](dist/)<br>[M2 & M6](dist/)<br>[M3 & M4](dist/)<br>[M3 & M5](dist/)<br>[M3 & M6](dist/)<br>[M4 & M5](dist/)<br>[M4 & M6](dist/)<br>[M5 & M6](dist/)
