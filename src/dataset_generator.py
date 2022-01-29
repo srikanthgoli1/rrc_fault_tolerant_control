@@ -9,7 +9,7 @@ sys.path.insert(0, cur_path+"/..")
 
 from src.utility.logger import *
 
-from dronekit import connect, mavutil
+from dronekit import connect, mavutil, VehicleMode, LocationGlobalRelative
 import time
 
 logging.debug('Beginning of code...')
@@ -81,8 +81,8 @@ if __name__ == '__main__':
                 )
             drone.master.send_mavlink(msg)
 
-        def actuator_test(motor_num, set_reset):
-        # get servo function - what this motor does
+        def set_motor_mode(motor_num, set_reset):
+            # get servo function - what this motor does
             logging.debug("GOT PARAM: %s", drone.master.parameters[f'SERVO{motor_num}_FUNCTION'])
             time.sleep(1)
 
@@ -90,13 +90,61 @@ if __name__ == '__main__':
             drone.master.parameters[f'SERVO{motor_num}_FUNCTION'] = set_reset
             time.sleep(1)
 
-        actuator_test(1, 33)
+        set_motor_mode(1, 33)
+        set_motor_mode(2, 34)
+        set_motor_mode(3, 35)
+        set_motor_mode(4, 36)
 
-        time.sleep(2)
+        logging.debug("Basic pre-arm checks")
+        # Don't try to arm until autopilot is ready
+        while not drone.master.is_armable:
+            logging.debug(" Waiting for vehicle to initialise...")
+            time.sleep(1)
+
+        print("Arming motors")
+        # Copter should arm in GUIDED mode
+        drone.master.mode = VehicleMode("GUIDED")
+        drone.master.armed = True
+
+        # Confirm vehicle armed before attempting to take off
+        while not drone.master.armed:
+            print(" Waiting for arming...")
+            time.sleep(1)
+
+        print("Taking off!")
+        drone.master.simple_takeoff(10)  # Take off to target altitude
+
+        # Wait until the vehicle reaches a safe height before processing the goto
+        #  (otherwise the command after Vehicle.simple_takeoff will execute
+        #   immediately).
+        while True:
+            print(" Altitude: ", drone.master.location.global_relative_frame.alt)
+            # Break and return from function just below target altitude.
+            if drone.master.location.global_relative_frame.alt >= 10 * 0.95:
+                print("Reached target altitude")
+                break
+            time.sleep(1)
+            
+
+        logging.debug("Set default/target airspeed to 3")
+        drone.master.airspeed = 3
+
+        logging.debug("Going towards first point for 30 seconds ...")
+        point1 = LocationGlobalRelative(-35.361354, 149.165218, 20)
+        drone.master.simple_goto(point1)
+
+        # sleep so we can see the change in map
+        time.sleep(5)
+
         logging.debug("Last Heartbeat: %s", drone.last_heartbeat)
 
-        actuator_test(1, 1)
+        set_motor_mode(3, 1)
+        set_motor_mode(4, 1)
 
-        set_servo(1, 1000)
+        set_servo(3, 1000)
+        set_servo(4, 1000)
 
         time.sleep(10)
+
+
+        
