@@ -139,10 +139,10 @@ if __name__ == '__main__':
         logging.debug("Last Heartbeat: %s", drone.last_heartbeat)
 
         set_motor_mode(3, 1)
-        set_motor_mode(4, 1)
+        # set_motor_mode(4, 1)
 
         set_servo(3, 1000)
-        set_servo(4, 1000)
+        # set_servo(4, 1000)
 
         time.sleep(10)
 
