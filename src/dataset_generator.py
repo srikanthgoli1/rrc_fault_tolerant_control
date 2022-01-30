@@ -94,6 +94,8 @@ if __name__ == '__main__':
         set_motor_mode(2, 34)
         set_motor_mode(3, 35)
         set_motor_mode(4, 36)
+        set_motor_mode(5, 37)
+        set_motor_mode(6, 38)
 
         logging.debug("Basic pre-arm checks")
         # Don't try to arm until autopilot is ready
@@ -138,11 +140,11 @@ if __name__ == '__main__':
 
         logging.debug("Last Heartbeat: %s", drone.last_heartbeat)
 
-        set_motor_mode(3, 1)
-        # set_motor_mode(4, 1)
+        set_motor_mode(5, 1)
+        # set_motor_mode(6, 1)
 
-        set_servo(3, 1000)
-        # set_servo(4, 1000)
+        set_servo(5, 1000)
+        # set_servo(6, 1000)
 
         time.sleep(10)
 
