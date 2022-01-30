@@ -1,4 +1,7 @@
 # motor_fault_sim_dataset
+- All motor directions are based on the [DJI conventions](https://forum44.djicdn.com/data/attachment/forum/201711/26/172348bppvtt1ot1nrtp5j.jpg)
+  - Referenced from [ArduPilot codebase](https://github.com/ArduPilot/ardupilot/blob/19ff65a4add88e09821a963f41dfe6e6633d0aa8/libraries/SITL/SIM_Frame.cpp#L65)
+  - Except for HexaCopter with X frame - which is clockwise and noted as hexa-cwx in the ArduPilot SITL
 
 | Vehicle Type | Frame | Frame Type | Filename
 | ----------- | ----------- | ----------- | ----------- |
