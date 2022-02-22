@@ -29,7 +29,6 @@
 - Run `pip install -r requirements.txt` (Python 2), <br>
 or `pip3 install -r requirements.txt` (Python 3) <br>
 in the command prompt
-- Run the ground station software (APM Planner or QGroundControl) - you can leave this ON
 - (Optional for Windows) You need the `<Your Drive>/ArduPilot/Tools/autotest/` folder in your $PATH Environment Variable. This folder contains the `sim_vehicle.py` file. Alternatively, to run the simulation, you can cd to this directory and run the `sim_vehicle.py` file whenever needed. 
 
 ### Run a sample code simulation
@@ -37,8 +36,15 @@ in the command prompt
 1. Drone simulation without any faults
 - Run the SITL simulator <br>
 `sim_vehicle.py -v ArduCopter`
+- Run the ground station software (APM/QGC) (if it already isn't running)
+- Wait for a few seconds for SITL to connect to the ground station <br>
+In case the ground station does not directly connect to the SITL, you can manually try connecting to `127.0.0.1` on ports 14450, 14451, 5760 over UDP.
 - Open `trajectory-healthy.py` in case you want to edit; or directly run it <br>
 `python trajectory-healthy.py`
+- Code will automatically exit on completion
+- You can download the log file from SITL [as mentioned here](https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html#accessing-log-files)
+- (Optional) You can generate graphs from this log file by running <br>
+`MAVExplorer.py <path-to-log-file>.log`
 
 2. Drone simulation with faulty motor(s)
 
