@@ -1,36 +1,49 @@
 # motor_fault_sim_dataset
-- All motor orders are based on the [DJI conventions](https://forum44.djicdn.com/data/attachment/forum/201711/26/172348bppvtt1ot1nrtp5j.jpg)
-  - Referenced from [ArduPilot codebase](https://github.com/ArduPilot/ardupilot/blob/19ff65a4add88e09821a963f41dfe6e6633d0aa8/libraries/SITL/SIM_Frame.cpp#L65)
-  - Except for HexaCopter with X frame - which is clockwise and noted as hexa-cwx in the ArduPilot SITL
+## What this repository contains?
+- Python code
+  - For a normal trajectory
+  - For a motor fault induced during normal trajectory
+  - For reading sensor data during a flight
+  - For introducing a sensor fault during flight
+- Generated datasets
+  - [set-1](dist/set-1) - Motor fault data is logged for 4 different drone frames (Quad+, QuadX, Hexa+, HexaX)
 
-| Vehicle Type | Frame | Frame Type | Filename
-| ----------- | ----------- | ----------- | ----------- |
-| Quadcopter | <img src="images/quadplus.png" width="200"/> | Plus | M1 [bin](dist/quad-plus/m1.bin) [mat](dist/quad-plus/m1.mat) <br> M2 [bin](dist/quad-plus/m2.bin) [mat](dist/quad-plus/m2.mat)<br> M3 [bin](dist/quad-plus/m3.bin) [mat](dist/quad-plus/m3.mat)<br> M4 [bin](dist/quad-plus/m4.bin) [mat](dist/quad-plus/m4.mat)<br> M1 & M2 [bin](dist/quad-plus/m1m2.bin) [mat](dist/quad-plus/m1m2.mat)<br> M1 & M3 [bin](dist/quad-plus/m1m3.bin) [mat](dist/quad-plus/m1m3.mat)<br> M1 & M4 [bin](dist/quad-plus/m1m4.bin) [mat](dist/quad-plus/m1m4.mat)<br> M2 & M3 [bin](dist/quad-plus/m2m3.bin) [mat](dist/quad-plus/m2m3.mat)<br> M2 & M4 [bin](dist/quad-plus/m2m4.bin) [mat](dist/quad-plus/m2m4.mat)<br> M3 & M4 [bin](dist/quad-plus/m3m4.bin) [mat](dist/quad-plus/m3m4.mat)
-| Quadcopter | <img src="images/quadx.png" width="200"/> | X | M1 [bin](dist/quad-x/m1.bin) [mat](dist/quad-x/m1.mat) <br> M2 [bin](dist/quad-x/m2.bin) [mat](dist/quad-x/m2.mat)<br> M3 [bin](dist/quad-x/m3.bin) [mat](dist/quad-x/m3.mat)<br> M4 [bin](dist/quad-x/m4.bin) [mat](dist/quad-x/m4.mat)<br> M1 & M2 [bin](dist/quad-x/m1m2.bin) [mat](dist/quad-x/m1m2.mat)<br> M1 & M3 [bin](dist/quad-x/m1m3.bin) [mat](dist/quad-x/m1m3.mat)<br> M1 & M4 [bin](dist/quad-x/m1m4.bin) [mat](dist/quad-x/m1m4.mat)<br> M2 & M3 [bin](dist/quad-x/m2m3.bin) [mat](dist/quad-x/m2m3.mat)<br> M2 & M4 [bin](dist/quad-x/m2m4.bin) [mat](dist/quad-x/m2m4.mat)<br> M3 & M4 [bin](dist/quad-x/m3m4.bin) [mat](dist/quad-x/m3m4.mat)
-| Hexacopter | <img src="images/hexaplus.png" width="200"/> | Plus | M1 [bin](dist/hexa-plus/m1.bin) [mat](dist/hexa-plus/m1.mat)<br> M2 [bin](dist/hexa-plus/m2.bin) [mat](dist/hexa-plus/m2.mat)<br> M3 [bin](dist/hexa-plus/m3.bin) [mat](dist/hexa-plus/m3.mat)<br> M4 [bin](dist/hexa-plus/m4.bin) [mat](dist/hexa-plus/m4.mat)<br> M5 [bin](dist/hexa-plus/m5.bin) [mat](dist/hexa-plus/m5.mat)<br> M6 [bin](dist/hexa-plus/m6.bin) [mat](dist/hexa-plus/m6.mat)<br> M1 & M2 [bin](dist/hexa-plus/m1m2.bin) [mat](dist/hexa-plus/m1m2.mat)<br> M1 & M3 [bin](dist/hexa-plus/m1m3.bin) [mat](dist/hexa-plus/m1m3.mat)<br> M1 & M4 [bin](dist/hexa-plus/m1m4.bin) [mat](dist/hexa-plus/m1m4.mat)<br> M1 & M5 [bin](dist/hexa-plus/m1m5.bin) [mat](dist/hexa-plus/m1m5.mat)<br> M1 & M6 [bin](dist/hexa-plus/m1m6.bin) [mat](dist/hexa-plus/m1m6.mat)<br> M2 & M3 [bin](dist/hexa-plus/m2m3.bin) [mat](dist/hexa-plus/m2m3.mat)<br> M2 & M4 [bin](dist/hexa-plus/m2m4.bin) [mat](dist/hexa-plus/m2m4.mat)<br> M2 & M5 [bin](dist/hexa-plus/m2m5.bin) [mat](dist/hexa-plus/m2m5.mat)<br> M2 & M6 [bin](dist/hexa-plus/m2m6.bin) [mat](dist/hexa-plus/m2m6.mat)<br> M3 & M4 [bin](dist/hexa-plus/m3m4.bin) [mat](dist/hexa-plus/m3m4.mat)<br> M3 & M5 [bin](dist/hexa-plus/m3m5.bin) [mat](dist/hexa-plus/m3m5.mat)<br> M3 & M6 [bin](dist/hexa-plus/m3m6.bin) [mat](dist/hexa-plus/m3m6.mat)<br> M4 & M5 [bin](dist/hexa-plus/m4m5.bin) [mat](dist/hexa-plus/m4m5.mat)<br> M4 & M6 [bin](dist/hexa-plus/m4m6.bin) [mat](dist/hexa-plus/m4m6.mat)<br> M5 & M6 [bin](dist/hexa-plus/m5m6.bin) [mat](dist/hexa-plus/m5m6.mat)
-| Hexacopter | <img src="images/hexax.png" width="200"/> | X | M1 [bin](dist/hexa-x/m1.bin) [mat](dist/hexa-x/m1.mat)<br> M2 [bin](dist/hexa-x/m2.bin) [mat](dist/hexa-x/m2.mat)<br> M3 [bin](dist/hexa-x/m3.bin) [mat](dist/hexa-x/m3.mat)<br> M4 [bin](dist/hexa-x/m4.bin) [mat](dist/hexa-x/m4.mat)<br> M5 [bin](dist/hexa-x/m5.bin) [mat](dist/hexa-x/m5.mat)<br> M6 [bin](dist/hexa-x/m6.bin) [mat](dist/hexa-x/m6.mat)<br> M1 & M2 [bin](dist/hexa-x/m1m2.bin) [mat](dist/hexa-x/m1m2.mat)<br> M1 & M3 [bin](dist/hexa-x/m1m3.bin) [mat](dist/hexa-x/m1m3.mat)<br> M1 & M4 [bin](dist/hexa-x/m1m4.bin) [mat](dist/hexa-x/m1m4.mat)<br> M1 & M5 [bin](dist/hexa-x/m1m5.bin) [mat](dist/hexa-x/m1m5.mat)<br> M1 & M6 [bin](dist/hexa-x/m1m6.bin) [mat](dist/hexa-x/m1m6.mat)<br> M2 & M3 [bin](dist/hexa-x/m2m3.bin) [mat](dist/hexa-x/m2m3.mat)<br> M2 & M4 [bin](dist/hexa-x/m2m4.bin) [mat](dist/hexa-x/m2m4.mat)<br> M2 & M5 [bin](dist/hexa-x/m2m5.bin) [mat](dist/hexa-x/m2m5.mat)<br> M2 & M6 [bin](dist/hexa-x/m2m6.bin) [mat](dist/hexa-x/m2m6.mat)<br> M3 & M4 [bin](dist/hexa-x/m3m4.bin) [mat](dist/hexa-x/m3m4.mat)<br> M3 & M5 [bin](dist/hexa-x/m3m5.bin) [mat](dist/hexa-x/m3m5.mat)<br> M3 & M6 [bin](dist/hexa-x/m3m6.bin) [mat](dist/hexa-x/m3m6.mat)<br> M4 & M5 [bin](dist/hexa-x/m4m5.bin) [mat](dist/hexa-x/m4m5.mat)<br> M4 & M6 [bin](dist/hexa-x/m4m6.bin) [mat](dist/hexa-x/m4m6.mat)<br> M5 & M6 [bin](dist/hexa-x/m5m6.bin) [mat](dist/hexa-x/m5m6.mat)
+## Getting started with code
+
+### Pre-requisites
+
+- Python 3.8
+- SITL (preferred) OR Actual drone
+
+  (This needs to have the SERVOn_FUNCTION parameters; which are missing in the ArduPilot firmware, but available on the PX4 firmware)
+  - Pixhawk hardware running [ArduPilot](https://github.com/ArduPilot/ardupilot) (and not [PX4](https://github.com/PX4/PX4-Autopilot)) firmware. Should also contain SERVOn_FUNCTION params.
+  - OR the official [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html). You can read more about [setting up SITL here](https://ardupilot.org/dev/docs/SITL-setup-landingpage.html#sitl-setup-landingpage).
+- Ground Station software
+  - APM Planner - [Install guide](https://ardupilot.org/planner2/docs/installing-apm-planner-2.html)
+  - OR QGroundControl - [Install guide](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html)
+- MAVExplorer.py - [Install guide](https://ardupilot.org/dev/docs/using-mavexplorer-for-log-analysis.html) (MAVExplorer can be used for generating graphs from log files)
+
+### Setting up
+- Clone this repository
+- Open the repository project in your IDE, or cd your command prompt to the directory
+- Run `pip install -r requirements.txt` (Python 2), <br>
+or `pip3 install -r requirements.txt` (Python 3) <br>
+in the command prompt
+- Run the ground station software (APM Planner or QGroundControl) - you can leave this ON
+- (Optional for Windows) You need the `<Your Drive>/ArduPilot/Tools/autotest/` folder in your $PATH Environment Variable. This folder contains the `sim_vehicle.py` file. Alternatively, to run the simulation, you can cd to this directory and run the `sim_vehicle.py` file whenever needed. 
+
+### Run a sample code simulation
+
+1. Drone simulation without any faults
+- Run the SITL simulator <br>
+`sim_vehicle.py -v ArduCopter`
+- Open `trajectory-healthy.py` in case you want to edit; or directly run it <br>
+`python trajectory-healthy.py`
+
+2. Drone simulation with faulty motor(s)
+
+3. 
 
 
 
-## Sample data
-
-- X-Frame QuadCopter is used
-- [15:47:15] Drone starts ascent
-- [15:47:55] Goes up to altitude of 100meters
-- [15:48:00] Fault introduced in motor 2 (from code)
-- Immediately starts descent
-- [15:48:15] Crash lands in 15-16 seconds
-
-### Barometer
-![](images/100m/Barometer.png)
-
-### Gyroscope
-![](images/100m/Gyro_1.png)
-
-### Roll, Pitch, Yaw
-![](images/100m/Euler_Roll.png)
-![](images/100m/Euler_Pitch.png)
-![](images/100m/Euler_Yaw.png)
-
-### Servo outputs
-![](images/100m/Servos_1-4.png)
+(https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html#using-sitl-for-ardupilot-testing)

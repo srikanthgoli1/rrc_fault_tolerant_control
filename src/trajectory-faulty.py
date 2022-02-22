@@ -147,6 +147,3 @@ if __name__ == '__main__':
         set_servo(6, 1000)
 
         time.sleep(10)
-
-
-        
