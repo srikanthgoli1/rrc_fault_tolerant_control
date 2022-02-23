@@ -26,7 +26,7 @@ Table of Contents:
 - Python 3.8
 - SITL (preferred) OR Actual drone
 
-  (This needs to have the SERVOn_FUNCTION parameters; which are missing in the ArduPilot firmware, but available on the PX4 firmware)
+  (This needs to have the SERVOn_FUNCTION parameters; which are missing in the PX4 firmware, but available on the ArduPilot firmware)
   - Pixhawk hardware running [ArduPilot](https://github.com/ArduPilot/ardupilot) (and not [PX4](https://github.com/PX4/PX4-Autopilot)) firmware. Should also contain SERVOn_FUNCTION params.
   - OR the official [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html). You can read more about [setting up SITL here](https://ardupilot.org/dev/docs/SITL-setup-landingpage.html#sitl-setup-landingpage).
 - Ground Station software
