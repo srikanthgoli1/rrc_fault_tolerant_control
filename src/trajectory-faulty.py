@@ -57,9 +57,10 @@ if __name__ == '__main__':
                     help="Vehicle connection target string. If not specified, SITL automatically started and used.")
     args = parser.parse_args()
 
-    connection_string = '127.0.0.1:14551'
-    # connection_string = args.connect
-    sitl = None
+    connection_string = args.connect
+
+    if not connection_string:
+        connection_string = '127.0.0.1:14551'
 
     if not connection_string:
         logging.critical("No connection string specified, exiting code.")
@@ -94,8 +95,10 @@ if __name__ == '__main__':
         set_motor_mode(2, 34)
         set_motor_mode(3, 35)
         set_motor_mode(4, 36)
-        set_motor_mode(5, 37)
-        set_motor_mode(6, 38)
+
+        # TODO: Uncomment the next two lines in case you are testing a HexaCopter. Keep them commented for a QuadCopter.
+        # set_motor_mode(5, 37)
+        # set_motor_mode(6, 38)
 
         logging.debug("Basic pre-arm checks")
         # Don't try to arm until autopilot is ready
@@ -140,10 +143,10 @@ if __name__ == '__main__':
 
         logging.debug("Last Heartbeat: %s", drone.last_heartbeat)
 
-        set_motor_mode(5, 1)
-        set_motor_mode(6, 1)
+        # TODO: Set motor modes to 1, for the motors you need to introduce fault into
+        set_motor_mode(4, 1)
 
-        set_servo(5, 1000)
-        set_servo(6, 1000)
+        # TODO: Manually pass a PWM value to the selected motor. For simulating a fault, we pass 1000, which means the motor does not run at all.
+        set_servo(4, 1000)
 
         time.sleep(10)
