@@ -6,7 +6,7 @@ Table of Contents:
   - [Run a sample code](#run-a-sample-code)
     - [Drone simulation without any faults (trajectory-healthy.py)](#drone-simulation-without-any-faults-trajectory-healthypy)
     - [Drone simulation with faulty motor(s) (trajectory-faulty.py)](#drone-simulation-with-faulty-motors-trajectory-faultypy)
-    - [Read a Dataset (read_dataset.m)](#read-a-dataset-read_datasetm)
+    - [Read a Dataset in MATLAB (read_dataset.m)](#read-a-dataset-in-matlab-read_datasetm)
 
 ## What this repository contains?
 - Python code
@@ -75,8 +75,25 @@ In case the ground station does not directly connect to the SITL, you can manual
 - (Optional) You can generate graphs from this log file by running <br>
 `MAVExplorer.py <path-to-log-file>.log`
 
-#### Read a Dataset ([read_dataset.m](src_matlab/read_dataset.m))
+#### Read a Dataset in MATLAB ([read_dataset.m](src_matlab/read_dataset.m))
+
+Logic for the MATLAB file is as follows:
+1. Opens relevant dataset such as `m1.mat`
+2. Sets which variables (log outputs) are to be read from the file. e.g. `{AHR2,PARM}`. Note that log outputs are priority based and each module (gyro, baro, ekf, ...) has its own update frequency for generating a log entry.
+3. Searches the last occourence of our override code, in the `PARM` array inside the dataset.
+4. Stores the Timestamp (TimeUS) in microseconds, for receipt of the last override packet found in the dataset.
+5. Now, the code selects the dataset array to be studied. Barometer altitude, in this case.
+6. Finds the Timestamp in Barometer array, which is nearest to the Timestamp of the override.
+7. Stores Timestamp key and value for Barometer array
+8. Plots graph of the Barometer Altitude values, starting from the Timestamp chosen in last step.
+
+Steps to run:
 - Open the `read_dataset.m` file in MATLAB
 - Make sure the `read_dataset.m` file and the `dist` folder are added to the MATLAB current path
   - You can do this by simply right-clicking on the file/folder in the file manager (on left side panel) and selecting Add to Path > Selected Folders and Subfolders
-- a
+- You can modify the required parameters in file
+  - filename - Path to the dataset file, [dist/set-1/quad-x/m1.mat](dist/set-1/quad-x/m1.mat) in the example
+  - varsToRead - Array of modules to read from dataset. You can directly load the .mat file in your workspace in order to see all possible combinations of dataset arrays you can choose here/ import here.
+  - searchParam - Parameter to search. In our case, the fault is introduced using SERVO1_FUNCTION. This will be SERVO2_FUNCTION, SERVO3_... and so on for other motors. searchParam variable is used and the last use occurence is found, for the param.
+  - selectedArray - Your choice of array (from varsToRead), on which you want to work/ play around.
+- Run the `read_dataset.m` file

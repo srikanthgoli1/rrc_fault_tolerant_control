@@ -22,15 +22,18 @@ lastParamUse = searchLastParamUse(end);
 % after this.
 lastParamTimestamp = DATASET.PARM.TimeUS(lastParamUse);
 
+% Select the dataset array you wish to work on (Baro, Gyro, EKF, ...)
+selectedArray = DATASET.BARO;
+
 % Find closest timestamp in the BARO (Barometer) data array.
 % val stores the time value in us
 % key stores the key of that timestamp in BARO. i.e. this is the closest
 % timestamp in BARO, when compared to the input SERVO1_FUNCTION timestamp's
 % last call.
-[val, key] = min(abs(DATASET.BARO.TimeUS-lastParamTimestamp));
-altitudeAtLastTimestamp=DATASET.BARO.Alt(key);
+[val, key] = min(abs(selectedArray.TimeUS-lastParamTimestamp));
+altitudeAtLastTimestamp=selectedArray.Alt(key);
 
 % The altitude array can now be observed from the selected key onwards.
 % i.e. this is the timestamp after which motor fault occurs.
-newAltitudeArrray = DATASET.BARO.Alt(key:end);
-plot(newAltitudeArrray);
+newAltitudeArray = selectedArray.Alt(key:end);
+plot(newAltitudeArray);
