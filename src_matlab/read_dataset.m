@@ -45,35 +45,68 @@ x = (selectedArray.TimeUS);
 rateP = selectedArray.P;
 ratePDes = selectedArray.PDes;
 t1 = nexttile;
-plot(x*10^-6, rateP);
+plot(x*10^-6, rateP, 'LineWidth', 2);
 hold on;
-plot(x*10^-6, ratePDes, 'Color',[1,0.7,0]);
-line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
-xlim([54 80]);
+plot(x*10^-6, ratePDes, 'Color',[1,0.7,0], 'LineStyle', '--', 'LineWidth', 2);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0], 'LineWidth', 1);
+xlim([54 73]);
 xlabel(t1,'Time in seconds');
 ylabel(t1,'P and P Desired');
-legend('P','PDes','ERR');
+legend('P','PDes','ERR','Location','southwest');
+set(gca,'FontSize', 14);
 
 rateY = selectedArray.Y;
 rateYDes = selectedArray.YDes;
 t2 = nexttile;
-plot(x*10^-6, rateY);
+plot(x*10^-6, rateY, 'LineWidth', 2);
 hold on;
-plot(x*10^-6, rateYDes, 'Color',[1,0.7,0]);
-line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
-xlim([54 80]);
+plot(x*10^-6, rateYDes, 'Color',[1,0.7,0], 'LineStyle', '--', 'LineWidth', 2);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0], 'LineWidth', 1);
+xlim([54 73]);
 xlabel(t2,'Time in seconds');
-ylabel(t2,'Y and Y Desired');
-legend('Y','YDes','ERR');
+ylabel(t2,'Q and Q Desired');
+legend('Q','QDes','ERR','Location','southwest');
+set(gca,'FontSize', 14);
 
 rateR = selectedArray.R;
 rateRDes = selectedArray.RDes;
 t3 = nexttile;
-plot(x*10^-6, rateR);
+plot(x*10^-6, rateR, 'LineWidth', 2);
 hold on;
-plot(x*10^-6, rateRDes, 'Color',[1,0.7,0]);
-line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
-xlim([54 80]);
+plot(x*10^-6, rateRDes, 'Color',[1,0.7,0], 'LineStyle', '--', 'LineWidth', 2);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0], 'LineWidth', 1);
+xlim([54 73]);
 xlabel(t3,'Time in seconds');
 ylabel(t3,'R and R Desired');
-legend('R','RDes','ERR');
+legend('R','RDes','ERR','Location','southwest');
+set(gca,'FontSize', 14);
+
+% Select the dataset array you wish to work on (Baro, Gyro, EKF, ...)
+selectedArray = DATASET.BARO;
+
+% Find closest timestamp in the BARO (Barometer) data array.
+% val stores the time value in us
+% key stores the key of that timestamp in BARO. i.e. this is the closest
+% timestamp in BARO, when compared to the input SERVO1_FUNCTION timestamp's
+% last call.
+[val, key] = min(abs(selectedArray.TimeUS-lastParamTimestamp));
+RATELastTimestamp=selectedArray.TimeUS(key);
+
+timestampInSeconds = RATELastTimestamp*10^-6;
+
+% The selected array can now be observed from the selected key onwards.
+% i.e. this is the timestamp after which motor fault occurs.
+
+% Create plots
+x = (selectedArray.TimeUS);
+
+baroAlt = selectedArray.Alt;
+t4 = nexttile;
+plot(x*10^-6, baroAlt, 'LineWidth', 2);
+hold on;
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0], 'LineWidth', 1);
+xlim([54 73]);
+xlabel(t4,'Time in seconds');
+ylabel(t4,'Altitude');
+legend('Alt','ERR','Location','southwest');
+set(gca,'FontSize', 14);
