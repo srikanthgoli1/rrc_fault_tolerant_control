@@ -10,10 +10,12 @@ lastParamUse = searchLastParamUse(end);
 % NOTE: This is when the SERVO1_FUNCTION override is sent to drone
 lastParamTimestamp = DATASET.PARM.TimeUS(lastParamUse);
 disp("lastParamTimestamp: " + lastParamTimestamp);
-% TimeUS: 73274845
+% TimeUS: 70769181
 
 selectedArray = DATASET.RATE;
+RATE = DATASET.RATE;
 [val, key] = min(abs(selectedArray.TimeUS-lastParamTimestamp));
+errorColumn = key;
 
 % TODO: This is the closest timestamp to lastParamTimestamp in the
 % DATASET.RATE Array.
@@ -22,7 +24,7 @@ selectedArray = DATASET.RATE;
 RATELastTimestamp=selectedArray.TimeUS(key);
 disp("Fault error column number: " + key);
 disp("RATELastTimestamp: " + RATELastTimestamp);
-% TimeUS: 73269014
+% TimeUS: 70768348
 
 % Create plots
 x = (selectedArray.TimeUS);
@@ -30,11 +32,8 @@ t = tiledlayout(3,2);
 
 rateP = selectedArray.P;
 t1 = nexttile;
-ratePDes = selectedArray.PDes;
 plot(x, rateP);
 line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-hold on;
-plot(x, ratePDes, 'Color',[0,1,0]);
 xlabel(t1,'Time in microseconds');
 ylabel(t1,'P');
 

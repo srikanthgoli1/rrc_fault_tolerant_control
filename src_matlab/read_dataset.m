@@ -34,6 +34,7 @@ RATELastTimestamp=selectedArray.TimeUS(key);
 
 % TODO: Marker
 disp("RATELastTimestamp: " + RATELastTimestamp);
+timestampInSeconds = RATELastTimestamp*10^-6;
 
 % The selected array can now be observed from the selected key onwards.
 % i.e. this is the timestamp after which motor fault occurs.
@@ -44,32 +45,35 @@ x = (selectedArray.TimeUS);
 rateP = selectedArray.P;
 ratePDes = selectedArray.PDes;
 t1 = nexttile;
-plot(x, rateP);
+plot(x*10^-6, rateP);
 hold on;
-plot(x, ratePDes, 'Color',[1,0.7,0]);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t1,'Time in microseconds');
+plot(x*10^-6, ratePDes, 'Color',[1,0.7,0]);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
+xlim([54 80]);
+xlabel(t1,'Time in seconds');
 ylabel(t1,'P and P Desired');
 legend('P','PDes','ERR');
 
 rateY = selectedArray.Y;
 rateYDes = selectedArray.YDes;
 t2 = nexttile;
-plot(x, rateY);
+plot(x*10^-6, rateY);
 hold on;
-plot(x, rateYDes, 'Color',[1,0.7,0]);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t2,'Time in microseconds');
+plot(x*10^-6, rateYDes, 'Color',[1,0.7,0]);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
+xlim([54 80]);
+xlabel(t2,'Time in seconds');
 ylabel(t2,'Y and Y Desired');
 legend('Y','YDes','ERR');
 
 rateR = selectedArray.R;
 rateRDes = selectedArray.RDes;
 t3 = nexttile;
-plot(x, rateR);
+plot(x*10^-6, rateR);
 hold on;
-plot(x, rateRDes, 'Color',[1,0.7,0]);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t3,'Time in microseconds');
+plot(x*10^-6, rateRDes, 'Color',[1,0.7,0]);
+line([timestampInSeconds timestampInSeconds], ylim, 'Color',[1,0,0]);
+xlim([54 80]);
+xlabel(t3,'Time in seconds');
 ylabel(t3,'R and R Desired');
 legend('R','RDes','ERR');
