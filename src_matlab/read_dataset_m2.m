@@ -20,6 +20,7 @@ selectedArray = DATASET.RATE;
 % Both timestamps are slightly different, since each module works at a
 % different speed.
 RATELastTimestamp=selectedArray.TimeUS(key);
+disp("Fault error column number: " + key);
 disp("RATELastTimestamp: " + RATELastTimestamp);
 % TimeUS: 73269014
 
@@ -29,8 +30,11 @@ t = tiledlayout(3,2);
 
 rateP = selectedArray.P;
 t1 = nexttile;
+ratePDes = selectedArray.PDes;
 plot(x, rateP);
 line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
+hold on;
+plot(x, ratePDes, 'Color',[0,1,0]);
 xlabel(t1,'Time in microseconds');
 ylabel(t1,'P');
 

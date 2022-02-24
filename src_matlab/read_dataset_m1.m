@@ -20,6 +20,7 @@ selectedArray = DATASET.RATE;
 % Both timestamps are slightly different, since each module works at a
 % different speed.
 RATELastTimestamp=selectedArray.TimeUS(key);
+disp("Fault error column number: " + key);
 disp("RATELastTimestamp: " + RATELastTimestamp);
 % TimeUS: 70768348
 

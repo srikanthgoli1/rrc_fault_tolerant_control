@@ -6,7 +6,6 @@ filename = 'dist/set-1/quad-x/m1.mat';
 varsToRead = {'AHR2','ATT','BARO','IMU','MAG','PARM','RATE','SIM'};
 
 DATASET = load(filename, varsToRead{:});
-
 % Change searchParam value; by replacing the 1 to any other integer in
 % [1,2,3,4] for QuadCopter or [1,2,3,4,5,6] for HexaCopter
 searchParam = 'SERVO1_FUNCTION';
@@ -41,46 +40,36 @@ disp("RATELastTimestamp: " + RATELastTimestamp);
 
 % Create plots
 x = (selectedArray.TimeUS);
-t = tiledlayout(3,2);
 
 rateP = selectedArray.P;
+ratePDes = selectedArray.PDes;
 t1 = nexttile;
 plot(x, rateP);
+hold on;
+plot(x, ratePDes, 'Color',[1,0.7,0]);
 line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
 xlabel(t1,'Time in microseconds');
-ylabel(t1,'P');
-
-ratePDes = selectedArray.PDes;
-t2 = nexttile;
-plot(x, ratePDes);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t2,'Time in microseconds');
-ylabel(t2,'P Desired');
+ylabel(t1,'P and P Desired');
+legend('P','PDes','ERR');
 
 rateY = selectedArray.Y;
-t3 = nexttile;
-plot(x, rateY);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t3,'Time in microseconds');
-ylabel(t3,'Y');
-
 rateYDes = selectedArray.YDes;
-t4 = nexttile;
-plot(x, rateYDes);
+t2 = nexttile;
+plot(x, rateY);
+hold on;
+plot(x, rateYDes, 'Color',[1,0.7,0]);
 line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t4,'Time in microseconds');
-ylabel(t4,'Y Desired');
+xlabel(t2,'Time in microseconds');
+ylabel(t2,'Y and Y Desired');
+legend('Y','YDes','ERR');
 
 rateR = selectedArray.R;
-t5 = nexttile;
-plot(x, rateR);
-line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t5,'Time in microseconds');
-ylabel(t5,'R');
-
 rateRDes = selectedArray.RDes;
-t6 = nexttile;
-plot(x, rateRDes);
+t3 = nexttile;
+plot(x, rateR);
+hold on;
+plot(x, rateRDes, 'Color',[1,0.7,0]);
 line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
-xlabel(t6,'Time in microseconds');
-ylabel(t6,'R Desired');
+xlabel(t3,'Time in microseconds');
+ylabel(t3,'R and R Desired');
+legend('R','RDes','ERR');

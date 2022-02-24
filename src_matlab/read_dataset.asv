@@ -6,7 +6,7 @@ filename = 'dist/set-1/quad-x/m1.mat';
 varsToRead = {'AHR2','ATT','BARO','IMU','MAG','PARM','RATE','SIM'};
 
 DATASET = load(filename, varsToRead{:});
-
+DATASET = DATASET[0][0];
 % Change searchParam value; by replacing the 1 to any other integer in
 % [1,2,3,4] for QuadCopter or [1,2,3,4,5,6] for HexaCopter
 searchParam = 'SERVO1_FUNCTION';
@@ -31,12 +31,46 @@ selectedArray = DATASET.RATE;
 % timestamp in BARO, when compared to the input SERVO1_FUNCTION timestamp's
 % last call.
 [val, key] = min(abs(selectedArray.TimeUS-lastParamTimestamp));
-altitudeAtLastTimestamp=selectedArray.Alt(key);
+RATELastTimestamp=selectedArray.TimeUS(key);
 
-% The altitude array can now be observed from the selected key onwards.
+% TODO: Marker
+disp("RATELastTimestamp: " + RATELastTimestamp);
+
+% The selected array can now be observed from the selected key onwards.
 % i.e. this is the timestamp after which motor fault occurs.
-newAltitudeArray = selectedArray.Alt(key:end);
-plot(newAltitudeArray);
 
-% TODO: RATE. P, Pdes, Y, YDes, R, RDes and corresponding servo which
-% faults
+% Create plots
+x = (selectedArray.TimeUS);
+
+rateP = selectedArray.P;
+ratePDes = selectedArray.PDes;
+t1 = nexttile;
+plot(x, rateP);
+hold on;
+plot(x, ratePDes, 'Color',[1,0.7,0]);
+line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
+xlabel(t1,'Time in microseconds');
+ylabel(t1,'P and P Desired');
+legend('P','PDes','ERR');
+
+rateY = selectedArray.Y;
+rateYDes = selectedArray.YDes;
+t2 = nexttile;
+plot(x, rateY);
+hold on;
+plot(x, rateYDes, 'Color',[1,0.7,0]);
+line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
+xlabel(t2,'Time in microseconds');
+ylabel(t2,'Y and Y Desired');
+legend('Y','YDes','ERR');
+
+rateR = selectedArray.R;
+rateRDes = selectedArray.RDes;
+t3 = nexttile;
+plot(x, rateR);
+hold on;
+plot(x, rateRDes, 'Color',[1,0.7,0]);
+line([RATELastTimestamp RATELastTimestamp], ylim, 'Color',[1,0,0]);
+xlabel(t3,'Time in microseconds');
+ylabel(t3,'R and R Desired');
+legend('R','RDes','ERR');
