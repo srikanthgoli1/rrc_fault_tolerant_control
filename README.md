@@ -7,13 +7,13 @@ Table of Contents:
     - [Drone simulation without any faults (trajectory-healthy.py)](#drone-simulation-without-any-faults-trajectory-healthypy)
     - [Drone simulation with faulty motor(s) (trajectory-faulty.py)](#drone-simulation-with-faulty-motors-trajectory-faultypy)
     - [Read a Dataset in MATLAB (read_dataset.m)](#read-a-dataset-in-matlab-read_datasetm)
+    - [Read GPS data during flight (print_save_gps.py)](#read-gps-data-during-flight-print_save_gpspy)
 
 ## What this repository contains?
 - Python code
   - [trajectory-healthy.py](src/trajectory-healthy.py) - For a normal trajectory
   - [trajectory-faulty.py](src/trajectory-faulty.py) - For a motor fault induced during normal trajectory
-  - For reading sensor data during a flight
-  - For introducing a sensor fault during flight
+  - [print_save_gps.py](src/print_save_gps.py) - For reading GPS sensor data during a flight
 - MATLAB code
   - [read_dataset.m](src_matlab/read_dataset.m) - For reading a dataset file and making sense of it
 - Generated datasets
@@ -97,3 +97,11 @@ Steps to run:
   - searchParam - Parameter to search. In our case, the fault is introduced using SERVO1_FUNCTION. This will be SERVO2_FUNCTION, SERVO3_... and so on for other motors. searchParam variable is used and the last use occurence is found, for the param.
   - selectedArray - Your choice of array (from varsToRead), on which you want to work/ play around.
 - Run the `read_dataset.m` file
+
+#### Read GPS data during flight ([print_save_gps.py](src/print_save_gps.py))
+
+- Start by going to ardupilot/ArduCopter and running sim_vehicle.py --map
+- Then in other termininal going to myexamples and running print_gps.py
+- Python print_gps.py –connect 127.0.0.1:14551
+- Wait for sitl drone to stop/ get in RTL mode
+- Data will be printed in terminal as well as in the gps_data.csv
