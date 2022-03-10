@@ -1,14 +1,15 @@
 # Fault Tolerant Control of Unmanned Aerial Vehicles (UAVs)
 Table of Contents:
-- [What this repository contains?](#what-this-repository-contains)
-- [Getting started with code](#getting-started-with-code)
-  - [Pre-requisites](#pre-requisites)
-  - [Setting up](#setting-up)
-  - [Run a sample code](#run-a-sample-code)
-    - [Drone simulation without any faults (trajectory-healthy.py)](#drone-simulation-without-any-faults-trajectory-healthypy)
-    - [Drone simulation with faulty motor(s) (trajectory-faulty.py)](#drone-simulation-with-faulty-motors-trajectory-faultypy)
-    - [Read a Dataset in MATLAB (read_dataset.m)](#read-a-dataset-in-matlab-read_datasetm)
-    - [Read GPS data during flight (print_save_gps.py)](#read-gps-data-during-flight-print_save_gpspy)
+- [Fault Tolerant Control of Unmanned Aerial Vehicles (UAVs)](#fault-tolerant-control-of-unmanned-aerial-vehicles-uavs)
+  - [What this repository contains?](#what-this-repository-contains)
+  - [Getting started with code](#getting-started-with-code)
+    - [Pre-requisites](#pre-requisites)
+    - [Setting up](#setting-up)
+    - [Run a sample code](#run-a-sample-code)
+      - [Drone simulation without any faults (trajectory-healthy.py)](#drone-simulation-without-any-faults-trajectory-healthypy)
+      - [Drone simulation with faulty motor(s) (trajectory-faulty.py)](#drone-simulation-with-faulty-motors-trajectory-faultypy)
+      - [Read a Dataset in MATLAB (read_dataset.m)](#read-a-dataset-in-matlab-read_datasetm)
+      - [Read GPS data during flight (print_save_gps.py)](#read-gps-data-during-flight-print_save_gpspy)
 
 ## What this repository contains?
 - Python code
@@ -18,7 +19,8 @@ Table of Contents:
 - MATLAB code
   - [read_dataset.m](src_matlab/read_dataset.m) - For reading a dataset file and making sense of it
 - Generated datasets
-  - [set-1](dist/set-1) - Motor fault data is logged for 4 different drone frames (Quad+, QuadX, Hexa+, HexaX)
+  - [simulation-set-1](dist/simulation-set-1) - (Simulated) Motor fault data is logged for 4 different drone frames (Quad+, QuadX, Hexa+, HexaX)
+  - [prototype-set-1](dist/prototype-set-1) - (Prototyped) Motor fault data is logged for 4 different drone frames (Quad+, QuadX, Hexa+, HexaX)
 
 ## Getting started with code
 
